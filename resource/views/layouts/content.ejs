@@ -1,0 +1,50 @@
+<div class="content">
+    <div class="contact-profile">
+        <div class="profile-left">
+            <img src="https://i.imgur.com/wvxPV9S.png" alt="تصویر پروفایل" />
+            <%if(req.user.first_name && req.user.last_name){%>
+                <p><%=req.user.first_name+" "+ req.user.last_name%></p>
+            <%}else if(req.user.username){%>
+                <p><%=req.user.username%></p>
+            <%}else{%>
+                <p><%=req.user.mobile%></p>
+            <%}%>
+        </div>
+        <input type="hidden" id="userID" value="<%=req.user._id%>">
+        <div class="profile-right">
+            <div class="online-status">
+                <i class="fa-solid fa-circle-user"></i>
+                <span id="onlinesCount"><strong>افراد آنلاین: </strong><span id="onlineCount" class="badge bg-success">-</span></span>
+            </div>
+            <div class="action-buttons">
+                <button class="btn-transparent"><i class="fa-solid fa-phone"></i></button>
+                <button class="btn-transparent"><i class="fa-solid fa-video"></i></button>
+                <button class="btn-transparent"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+            </div>
+        </div>
+    </div>
+    <div id="roomName">
+        <h3></h3>
+    </div>
+    <div class="messages">
+        <ul>
+        </ul>
+    </div>
+    <div class="message-input">
+        <div class="wrap">
+            <div class="input-group">
+                <input type="text" id="messageInput" placeholder="پیام خود را بنویسید..." />
+                <div class="attachment-wrapper">
+                    <label for="file-upload" class="attachment-label">
+                        <i class="fa-solid fa-paperclip"></i>
+                    </label>
+                    <input type="file" id="file-upload" onchange="sendFile(this.files)" style="display: none;"/>
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                <button class="location" onclick="getLocation()"><i class="fa-solid fa-location-dot"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
